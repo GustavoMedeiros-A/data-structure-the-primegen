@@ -1,3 +1,9 @@
+// npx ts-node src/testTs.ts
+
+function quick_sort(arr: number[]): void {
+    quick_sort_function(arr, 0, arr.length - 1);
+}
+
 function quick_sort_function(arr: number[], low: number, high: number): void {
     if (low >= high) {
         return;
@@ -5,10 +11,10 @@ function quick_sort_function(arr: number[], low: number, high: number): void {
 
     const pivotIndex = partition(arr, low, high);
 
-    // Run the algorithm in one side
-    quick_sort_function(arr, low, pivotIndex - 1);
-    // Run the algorithm in other side
     quick_sort_function(arr, pivotIndex + 1, high);
+    quick_sort_function(arr, low, pivotIndex - 1);
+
+    console.log(arr);
 }
 
 function partition(arr: number[], low: number, high: number): number {
@@ -19,7 +25,6 @@ function partition(arr: number[], low: number, high: number): number {
     for (let i = low; i < high; ++i) {
         if (arr[i] <= pivot) {
             index++;
-            //swapping
             const temp = arr[i];
             arr[i] = arr[index];
             arr[index] = temp;
@@ -33,6 +38,4 @@ function partition(arr: number[], low: number, high: number): number {
     return index;
 }
 
-export default function quick_sort(arr: number[]): void {
-    quick_sort_function(arr, 0, arr.length - 1);
-}
+quick_sort([100, 2138, 123, 1, 2, 4, 1237, 21, 2]);
